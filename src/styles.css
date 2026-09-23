@@ -1,0 +1,148 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system: "Aurora Night" — deep obsidian surfaces, aurora teal accent,
+ * warm ember secondary. Dark-first music player.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ember: var(--ember);
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 1rem;
+  --background: oklch(0.16 0.017 250);
+  --foreground: oklch(0.97 0.005 250);
+  --surface: oklch(0.21 0.02 250);
+  --surface-2: oklch(0.26 0.024 250);
+  --card: oklch(0.21 0.02 250);
+  --card-foreground: oklch(0.97 0.005 250);
+  --popover: oklch(0.21 0.02 250);
+  --popover-foreground: oklch(0.97 0.005 250);
+  --primary: oklch(0.82 0.16 178);
+  --primary-foreground: oklch(0.18 0.03 200);
+  --secondary: oklch(0.28 0.026 250);
+  --secondary-foreground: oklch(0.97 0.005 250);
+  --muted: oklch(0.26 0.022 250);
+  --muted-foreground: oklch(0.72 0.015 250);
+  --accent: oklch(0.3 0.04 250);
+  --accent-foreground: oklch(0.97 0.005 250);
+  --ember: oklch(0.75 0.17 45);
+  --destructive: oklch(0.62 0.22 22);
+  --destructive-foreground: oklch(0.98 0.005 250);
+  --border: oklch(0.32 0.022 250 / 60%);
+  --input: oklch(0.32 0.022 250 / 70%);
+  --ring: oklch(0.82 0.16 178);
+
+  --gradient-aurora: linear-gradient(135deg, oklch(0.82 0.16 178), oklch(0.72 0.15 285));
+  --gradient-ember: linear-gradient(135deg, oklch(0.75 0.17 45), oklch(0.68 0.2 12));
+  --gradient-veil: linear-gradient(180deg, oklch(0.16 0.017 250 / 0%), oklch(0.16 0.017 250 / 96%));
+  --shadow-float: 0 24px 60px -24px oklch(0 0 0 / 70%);
+  --shadow-glow: 0 0 40px -8px oklch(0.82 0.16 178 / 45%);
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility text-gradient-aurora {
+  background: var(--gradient-aurora);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-aurora {
+  background-image: var(--gradient-aurora);
+}
+
+@utility bg-ember-grad {
+  background-image: var(--gradient-ember);
+}
+
+@utility shadow-float {
+  box-shadow: var(--shadow-float);
+}
+
+@utility shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+@utility glass {
+  background-color: color-mix(in oklab, var(--surface) 72%, transparent);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+}
+
+@keyframes equalize {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@utility bar-eq {
+  animation: equalize 900ms ease-in-out infinite;
+  transform-origin: bottom;
+}
